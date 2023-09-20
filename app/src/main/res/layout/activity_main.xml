@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    tools:context=".MainActivity">
+//background 배경 사진으로 임의 지정
+
+//회원가입 버튼
+
+    <Button
+        android:id="@+id/join_Btn"
+        android:layout_width="301dp"
+        android:layout_height="31dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.224"
+        android:background="@drawable/join_button"
+        tools:ignore="MissingConstraints" />
+
+
+    //예약버튼
+
+    //운동기구 추천버튼
+
+    <Button
+        android:id="@+id/reserve_btn"
+        android:layout_width="163dp"
+        android:layout_height="147dp"
+        android:background="@drawable/reserve_drawable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+
+    //헬스톡 버튼
+
+
+    //헬스다이어리버튼 시간표로 추후에 변경..?
+
+    //이름 을 클릭하면 회원가입에서 쓴 이름을 가져옴 회원가입을 하면 main으로 넘어
+    갈때 회원 이름이 떠야하는데 어케..?
+
+    <Button
+        android:id="@+id/routine_btn"
+        android:layout_width="162dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/routine_drawable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.714" />
+
+    <Button
+        android:id="@+id/person_talk_btn"
+        android:layout_width="170dp"
+        android:layout_height="153dp"
+        android:background="@drawable/persom_use_drawable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <Button
+        android:id="@+id/Health_diary_btn"
+        android:layout_width="164dp"
+        android:layout_height="144dp"
+        android:background="@drawable/cotent_drawable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.449" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="60dp"
+        android:layout_height="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.146" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

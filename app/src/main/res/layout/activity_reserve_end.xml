@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="#FC3F88EB"
+        android:gravity="center"
+        android:text="예약이 완료되었습니다."
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="선택하신 운동기구가 예약되었습니다 ! \n 예약한 시간에 맞춰 이용해주세요"
+        android:textColor="#2b448d"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="예약자" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="님이 득근할 날짜와 시간"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvYear4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F6BB43"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="0000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="년" />
+
+        <TextView
+            android:id="@+id/tvMonth4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F6BB43"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="월" />
+
+        <TextView
+            android:id="@+id/tvDay4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F6BB43"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="일" />
+
+        <TextView
+            android:id="@+id/tvHour4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F6BB43"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="시" />
+
+        <TextView
+            android:id="@+id/tvMinute4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F6BB43"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2b448d"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="분" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:gravity="center"
+        android:text="이용해 주셔서 감사합니다"
+        android:textColor="#2b448d"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/BtnReturnToHome"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:background="@drawable/home2" />
+
+</LinearLayout>
