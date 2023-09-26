@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/join2"
+    android:orientation="vertical"
+    tools:context=".JoinActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/join_name"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="230dp"
+            android:ems="10"
+            android:hint="이름"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/join_email"
+                android:layout_width="241dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="이메일"
+                android:inputType="textEmailAddress"
+                app:layout_constraintTop_toBottomOf="@+id/join_name"
+                tools:layout_editor_absoluteX="76dp" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/join_password"
+            android:layout_width="240dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@+id/join_email" />
+
+        <EditText
+            android:id="@+id/join_pwck"
+            android:layout_width="240dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="244dp"
+            android:ems="10"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/join_password"
+            app:layout_constraintTop_toBottomOf="@+id/join_password"
+            app:layout_constraintVertical_bias="0.166" />
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+</LinearLayout>
+
+    <ImageButton
+        android:id="@+id/client"
+        android:layout_width="207dp"
+        android:layout_height="84dp"
+        android:layout_gravity="center"
+        android:background="@drawable/client_sign_up"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="513dp" />
+
+</LinearLayout>
+
+
