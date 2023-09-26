@@ -23,6 +23,8 @@
             android:exported="false"/>
         <activity android:name=".ReserveDaytimeActivity"
             android:exported="false"/>
+        <activity android:name=".JoinActivity"
+            android:exported="false"/>
 <activity android:name=".SplashActivity"
     android:theme="@style/Theme.Capstone_HealthPass"
     android:exported="true">
