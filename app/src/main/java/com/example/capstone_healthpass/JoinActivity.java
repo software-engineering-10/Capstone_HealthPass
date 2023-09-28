@@ -2,20 +2,23 @@ package com.example.capstone_healthpass;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class JoinActivity extends AppCompatActivity {
 
 
     private ImageButton client;
     private EditText join_name,join_email,join_password,join_pwck;
-
-
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +28,7 @@ public class JoinActivity extends AppCompatActivity {
         join_password= findViewById(R.id.join_password);
         join_pwck = findViewById(R.id.join_pwck);
         client = findViewById(R.id.client);
-
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         client.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +46,30 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+
+        // 네비게이션 아이템 클릭 리스너 설정
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+                        startActivity(intent);//다음 액티비티 화면에
+                        break;
+                    case R.id.navigation_mypage:
+                        Intent intent1 = new Intent(JoinActivity.this, MYpageActivity.class);
+                        startActivity(intent1);//다음 액티비티 화면에
+                        // 예: 마이페이지 화면으로 이동
+                        break;
+                    case R.id.navigation_qr_code:
+                        Intent intent3 = new Intent(JoinActivity.this,QrActivity.class);
+                        startActivity(intent3);
+                        break;
+                }
+                return true;
+            }
+        });
         // 클라이언트 버튼 클릭 리스너
         client.setOnClickListener(new View.OnClickListener() {
             @Override

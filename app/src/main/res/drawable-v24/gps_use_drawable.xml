@@ -13,7 +13,7 @@
 
 
 
-    <item android:drawable="@drawable/person_talk">
+    <item android:drawable="@drawable/gps">
         <shape>
             <corners
                 android:radius="20dp" />

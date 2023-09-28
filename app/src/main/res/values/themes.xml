@@ -3,6 +3,7 @@
     <style name="Theme.Capstone_HealthPass" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/main_page</item>
         <!-- Primary brand color. -->
+        <item name="windowActionBar">true</item>
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="windowNoTitle">true</item> //메뉴바 없애기

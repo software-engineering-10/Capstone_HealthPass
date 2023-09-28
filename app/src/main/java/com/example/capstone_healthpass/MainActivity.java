@@ -3,29 +3,56 @@ package com.example.capstone_healthpass;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button join_Btn;
     private Button reserve_btn;
     private Button routine_btn;
-    private Button person_talk_btn;
+    private Button gps_btn;
     private TextView name;
     private Button Health_diary_btn;
     private WeekPlanFragment weekPlanFragment;
-
+    private BottomNavigationView bottomNavigationView;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        // 네비게이션 아이템 클릭 리스너 설정
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);//다음 액티비티 화면에
+                        break;
+                    case R.id.navigation_mypage:
+                        Intent intent1 = new Intent(MainActivity.this, MYpageActivity.class);
+                        startActivity(intent1);//다음 액티비티 화면에
+                        // 예: 마이페이지 화면으로 이동
+                        break;
+                    case R.id.navigation_qr_code:
+                        Intent intent3 = new Intent(MainActivity.this, QrActivity.class);
+                        startActivity(intent3);
+                        break;
+                }
+                return true;
+            }
+        });
 
         join_Btn = (Button) findViewById(R.id.join_Btn);
         join_Btn.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
 //운동추천 누르면 RoutineActivity로 이동
 
 
-        person_talk_btn = (Button) findViewById(R.id.person_talk_btn);
-        person_talk_btn.setOnClickListener(new View.OnClickListener() {
+        gps_btn= (Button) findViewById(R.id.gps_btn);
+        gps_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ScrollActivity.class);
+                Intent intent = new Intent(MainActivity.this,gpsActivity.class);
                 startActivity(intent);//다음 액티비티 화면에 출력
             }
         });
@@ -102,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         join_Btn.setVisibility(View.GONE);
         reserve_btn.setVisibility(View.GONE);
         routine_btn.setVisibility(View.GONE);
-        person_talk_btn.setVisibility(View.GONE);
+        gps_btn.setVisibility(View.GONE);
         Health_diary_btn.setVisibility(View.GONE);
 
         // WeekPlanFragment를 화면에 표시
@@ -126,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         join_Btn.setVisibility(View.VISIBLE);
         reserve_btn.setVisibility(View.VISIBLE);
         routine_btn.setVisibility(View.VISIBLE);
-        person_talk_btn.setVisibility(View.VISIBLE);
+        gps_btn.setVisibility(View.VISIBLE);
         Health_diary_btn.setVisibility((View.VISIBLE));
     }
 }

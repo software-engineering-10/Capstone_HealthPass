@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/main"
     tools:context=".MainActivity">
+
+
 //background 배경 사진으로 임의 지정
 
 //회원가입 버튼
@@ -69,10 +71,10 @@
         app:layout_constraintVertical_bias="0.714" />
 
     <Button
-        android:id="@+id/person_talk_btn"
+        android:id="@+id/gps_btn"
         android:layout_width="170dp"
         android:layout_height="153dp"
-        android:background="@drawable/persom_use_drawable"
+        android:background="@drawable/gps_use_drawable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.856"
@@ -102,5 +104,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.146" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/bottom">
+
+        </FrameLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_navigation_menu" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
