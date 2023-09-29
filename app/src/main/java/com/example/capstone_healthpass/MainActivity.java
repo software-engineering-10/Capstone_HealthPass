@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.capstone_healthpass.DB.DataBaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        getDB();
         // 네비게이션 아이템 클릭 리스너 설정
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -155,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
         routine_btn.setVisibility(View.VISIBLE);
         gps_btn.setVisibility(View.VISIBLE);
         Health_diary_btn.setVisibility((View.VISIBLE));
+    }
+    @SuppressLint("Range")
+    public void getDB(){
+        DataBaseHelper dbHelper = new DataBaseHelper(this);
+        dbHelper.close();
     }
 }
 
