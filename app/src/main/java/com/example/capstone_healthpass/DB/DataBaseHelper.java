@@ -16,17 +16,14 @@ import java.io.OutputStream;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private final static String TAG = "DataBaseHelper";
-    private static final int version = 8;
+    private static final int version = 1;
     private static String DB_PATH = "";
     private static String DB_NAME="info.db";
     private SQLiteDatabase mDataBase;
     private Context mContext;
     public DataBaseHelper(Context context){
-        super(context,  new File(context.getExternalFilesDir(null),
-                DB_NAME).toString(),null,version);
-
-        DB_PATH = context.getExternalFilesDir(null).getPath() + File.separator;
-        mDataBase = this.getWritableDatabase();
+        super(context, DB_NAME, null, 1);
+        DB_PATH = context.getDatabasePath(DB_NAME).getPath(); // 데이터베이스 파일 경로 설정
         this.mContext = context;
         dataBaseCheck();
     }
@@ -34,12 +31,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         File dbFile = new File(DB_PATH + DB_NAME);
         if (!dbFile.exists()) {
             dbCopy();
-
+            Log.d(TAG,"Database is copied.");
         }
 
     }
 
-
+    private void dbCopy() {
+        try {
+            InputStream inputStream = mContext.getAssets().open(DB_NAME);
+            OutputStream outputStream = new FileOutputStream(DB_PATH);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "dbCopy: IOException 발생함");
+        }
+    }
     @Override
     public synchronized void close() {
         if (mDataBase != null) {
@@ -47,30 +60,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         super.close();
     }
-    private void dbCopy() {
 
-        try {
-
-
-            InputStream inputStream = mContext.getAssets().open(DB_NAME);
-
-            String out_filename = DB_PATH + DB_NAME;
-
-            OutputStream outputStream = new FileOutputStream(out_filename);
-            byte[] mBuffer = new byte[1024];
-            int mLength;
-            while ((mLength = inputStream.read(mBuffer)) > 0) {
-                outputStream.write(mBuffer,0,mLength);
-            }
-            outputStream.flush();;
-            outputStream.close();
-            inputStream.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.d("dbCopy","IOException 발생함");
-        }
-    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -84,3 +74,4 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Log.d(TAG,"onUpgrade() : DB Schema Modified and Excuting onCreate()");
     }
 }
+

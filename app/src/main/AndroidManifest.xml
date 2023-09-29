@@ -32,6 +32,8 @@
             android:exported="true"/>
         <activity android:name=".gpsActivity"
             android:exported="true"/>
+        <activity android:name=".RecommendationActivity"
+            android:exported="true"/>
         <activity android:name=".RoutineActivity"
             android:exported="true"/>
         <activity android:name=".MYpageActivity"

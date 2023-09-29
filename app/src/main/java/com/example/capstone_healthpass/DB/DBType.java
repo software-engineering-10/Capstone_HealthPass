@@ -12,14 +12,14 @@ public class DBType {
     }
     public Cursor selectRawQuery(String query)
     {
-
         db = sql.getReadableDatabase();
-
-
         Cursor cursor = db.rawQuery(query, null);
-
-
         return cursor;
     }
-
+    public Cursor validRawQuery(String query, String area)
+    {
+        db = sql.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[]{area});
+        return cursor;
+    }
 }
