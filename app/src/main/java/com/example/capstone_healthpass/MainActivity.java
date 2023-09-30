@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        join_Btn = (Button) findViewById(R.id.join_Btn);
+        join_Btn = (Button) findViewById(R.id.register_Btn);
         join_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
