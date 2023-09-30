@@ -71,7 +71,7 @@ public class gpsActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(36.7702,126.9332), 18));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(36.7702,126.9332), 16));
     }
     public void call(View view){
         String phoneNumber = "0507-1362-3123"; // 전화 걸고자 하는 번호
