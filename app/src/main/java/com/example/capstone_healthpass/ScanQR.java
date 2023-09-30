@@ -30,6 +30,9 @@ public class ScanQR extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 // todo
+                String url = result.getContents();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
