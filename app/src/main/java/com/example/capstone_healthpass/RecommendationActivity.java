@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.capstone_healthpass.DB.DBType;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -17,6 +21,7 @@ public class RecommendationActivity extends Activity  {
     Intent intent;
     DBType dbHelper = null;
     TextView textView;
+    BottomNavigationView bottomNavigationView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +29,29 @@ public class RecommendationActivity extends Activity  {
         setContentView(R.layout.activity_recommendation);
         textView = findViewById(R.id.textView);
         dbTest(textView);
-
-
+        // 네비게이션 아이템 클릭 리스너 설정
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        Intent intent = new Intent(RecommendationActivity.this, MainActivity.class);
+                        startActivity(intent);//다음 액티비티 화면에
+                        break;
+                    case R.id.navigation_mypage:
+                        Intent intent1 = new Intent(RecommendationActivity.this, MYpageActivity.class);
+                        startActivity(intent1);//다음 액티비티 화면에
+                        // 예: 마이페이지 화면으로 이동
+                        break;
+                    case R.id.navigation_qr_code:
+                        Intent intent3 = new Intent(RecommendationActivity.this,QrActivity.class);
+                        startActivity(intent3);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @SuppressLint("Range")
@@ -59,4 +85,6 @@ public class RecommendationActivity extends Activity  {
 
 
     }
+
+
 }

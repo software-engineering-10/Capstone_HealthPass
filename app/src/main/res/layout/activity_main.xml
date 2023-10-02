@@ -9,9 +9,11 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="404dp"
         android:layout_height="728dp"
-        tools:layout_editor_absoluteY="3dp">
+        tools:layout_editor_absoluteY="3dp"
+        tools:ignore="MissingConstraints">
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -20,9 +22,6 @@
     </LinearLayout>
 
 
-    //예약버튼
-
-    //운동기구 추천버튼
 
     <Button
         android:id="@+id/register_Btn"
@@ -61,14 +60,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.225"
-        tools:ignore="MissingConstraints" />
-    //헬스톡 버튼
-
-
-    //헬스다이어리버튼 시간표로 추후에 변경..?
-
-    //이름 을 클릭하면 회원가입에서 쓴 이름을 가져옴 회원가입을 하면 main으로 넘어
-    갈때 회원 이름이 떠야하는데 어케..?
+        tools:ignore="MissingConstraints"
+        />
 
     <Button
         android:id="@+id/routine_btn"
@@ -119,15 +112,17 @@
         app:layout_constraintVertical_bias="0.146" />
 
     <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="737dp"
+        android:layout_width="410dp"
+        android:layout_height="735dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="-3dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
         <FrameLayout
             android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="556dp"
             android:layout_weight="1">
 
         </FrameLayout>

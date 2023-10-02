@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Health_diary_btn;
     private WeekPlanFragment weekPlanFragment;
     private BottomNavigationView bottomNavigationView;
+    private Button login_btn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
             Log.i("권한 테스트", "권한 추가해야함.");
@@ -65,7 +67,15 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        login_btn=findViewById(R.id.login_btn);
 
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);//다음 액티비티 화면에 출력
+            }
+        });
         join_Btn = (Button) findViewById(R.id.register_Btn);
         join_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,31 +139,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    Health_diary_btn =findViewById(R.id.Health_diary_btn);
+        Health_diary_btn =findViewById(R.id.Health_diary_btn);
 
 // Health_diary_btn 클릭 이벤트 핸들러 설정
         Health_diary_btn.setOnClickListener(new View.OnClickListener()
 
-    {
-        @Override
-        public void onClick (View v){
-        // 기존 버튼들 숨기기
-        join_Btn.setVisibility(View.GONE);
-        reserve_btn.setVisibility(View.GONE);
-        routine_btn.setVisibility(View.GONE);
-        gps_btn.setVisibility(View.GONE);
-        Health_diary_btn.setVisibility(View.GONE);
-
-        // WeekPlanFragment를 화면에 표시
-        if (weekPlanFragment == null) {
-            weekPlanFragment = new WeekPlanFragment();
-        }
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, weekPlanFragment)
-                .commit();
+        {
+            @Override
+            public void onClick (View v){
+                // 기존 버튼들 숨기기
+                join_Btn.setVisibility(View.GONE);
+                reserve_btn.setVisibility(View.GONE);
+                routine_btn.setVisibility(View.GONE);
+                gps_btn.setVisibility(View.GONE);
+                Health_diary_btn.setVisibility(View.GONE);
+                login_btn.setVisibility(View.GONE);
+                // WeekPlanFragment를 화면에 표시
+                if (weekPlanFragment == null) {
+                    weekPlanFragment = new WeekPlanFragment();
+                }
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, weekPlanFragment)
+                        .commit();
+            }
+        });
     }
-    });
-}
 
     // 뒤로 가기 버튼 또는 다른 방법으로 WeekPlanFragment를 숨길 때 기존 버튼들을 다시 표시
 // 예를 들어, WeekPlanFragment에서 뒤로 가기 버튼을 처리할 때
@@ -167,11 +177,13 @@ public class MainActivity extends AppCompatActivity {
         routine_btn.setVisibility(View.VISIBLE);
         gps_btn.setVisibility(View.VISIBLE);
         Health_diary_btn.setVisibility((View.VISIBLE));
+        login_btn.setVisibility(View.VISIBLE);
     }
     @SuppressLint("Range")
     public void getDB(){
         DataBaseHelper dbHelper = new DataBaseHelper(this);
         dbHelper.close();
     }
-}
 
+
+}
