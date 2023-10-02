@@ -26,12 +26,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="257dp"
         android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,13 +56,14 @@
 
         </LinearLayout>
 
-
         <EditText
             android:id="@+id/join_password"
             android:layout_width="240dp"
             android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="76dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="133dp"
             android:ems="10"
             android:hint="비밀번호(6자 이상 입력)"
             android:inputType="textPassword"
@@ -69,8 +73,10 @@
             android:id="@+id/join_pwck"
             android:layout_width="240dp"
             android:layout_height="45dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="194dp"
             android:layout_marginBottom="244dp"
             android:ems="10"
             android:hint="비밀번호 확인"
@@ -80,28 +86,30 @@
             app:layout_constraintTop_toBottomOf="@+id/join_password"
             app:layout_constraintVertical_bias="0.166" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/join_phone"
+            android:layout_width="240dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="77dp"
+            android:layout_marginBottom="244dp"
+            android:ems="10"
+            android:hint="전화번호"
+            android:inputType="phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/join_password"
+            app:layout_constraintTop_toBottomOf="@+id/join_password"
+            app:layout_constraintVertical_bias="0.166" />
+
+    </RelativeLayout>
 
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
 </LinearLayout>
-
-    <Button
-        android:id="@+id/client"
-        android:layout_width="207dp"
-        android:layout_height="84dp"
-        android:layout_gravity="center"
-        android:background="#C4E2FA"
-        android:text="회원가입"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="513dp"
-        android:onClick="register"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,6 +121,20 @@
             android:layout_weight="1"
             android:id="@+id/bottom">
 
+            <Button
+                android:id="@+id/client"
+                android:layout_width="207dp"
+                android:layout_height="84dp"
+                android:layout_gravity="center"
+                android:background="#C4E2FA"
+                android:onClick="register"
+                android:text="회원가입"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="513dp" />
         </FrameLayout>
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

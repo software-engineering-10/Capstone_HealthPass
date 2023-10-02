@@ -1,5 +1,6 @@
 package com.example.capstone_healthpass;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +35,7 @@ public class JoinActivity extends AppCompatActivity {
 
 
     private Button client;
-    private EditText join_name,join_email,join_password,join_pwck;
+    private EditText join_name,join_email,join_password,join_pwck,join_phone;
     private BottomNavigationView bottomNavigationView;
     Gson gson;
     private Retrofit retrofit;
@@ -48,6 +49,7 @@ public class JoinActivity extends AppCompatActivity {
         join_password= findViewById(R.id.join_password);
         join_pwck = findViewById(R.id.join_pwck);
         client = findViewById(R.id.client);
+        join_phone = findViewById(R.id.join_phone);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
 
@@ -61,15 +63,18 @@ public class JoinActivity extends AppCompatActivity {
                     case R.id.navigation_home:
                         Intent intent = new Intent(JoinActivity.this, MainActivity.class);
                         startActivity(intent);//다음 액티비티 화면에
+                        finish();
                         break;
                     case R.id.navigation_mypage:
                         Intent intent1 = new Intent(JoinActivity.this, MYpageActivity.class);
                         startActivity(intent1);//다음 액티비티 화면에
+                        AppManager.finishAllActivities();
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
                         Intent intent3 = new Intent(JoinActivity.this,QrActivity.class);
                         startActivity(intent3);
+                        finish();
                         break;
                 }
                 return true;
@@ -90,11 +95,11 @@ public class JoinActivity extends AppCompatActivity {
         String name = join_name.getText().toString();
         String email = join_email.getText().toString();
         String password = join_password.getText().toString();
-
+        String phone = join_phone.getText().toString();
         String check = join_pwck.getText().toString();
 
         if (isValid(email, password,check)) {
-            registerAccount(name,email,password);
+            registerAccount(name,phone,email,password);
 
 
 
@@ -109,17 +114,15 @@ public class JoinActivity extends AppCompatActivity {
 
         }
     }
-    private void registerAccount(final String name, final String email, final String password){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
+    private void registerAccount(final String name,final String phone, final String email, final String password){
+
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://0666-220-69-208-115.ngrok.io")
-                .addConverterFactory(GsonConverterFactory.create(gson));
+                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
+                .addConverterFactory(GsonConverterFactory.create());
         retrofit = builder.build();
 
         apiService = retrofit.create(ApiService.class);
-        apiService.requestPost(name,email,password).enqueue(new Callback<JSONObject>() {
+        apiService.requestPost(name,phone,email,password).enqueue(new Callback<JSONObject>() {
 
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
@@ -130,6 +133,7 @@ public class JoinActivity extends AppCompatActivity {
                     Log.d("RegisterSuccess", "회원가입 성공");
                     Intent result = new Intent(JoinActivity.this, MainActivity.class);
                     startActivity(result);
+                    finish();
                 }
                 else if(response.code()==202){
                     Log.d("RegisterError", "이메일 중복");
@@ -146,6 +150,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }
 
