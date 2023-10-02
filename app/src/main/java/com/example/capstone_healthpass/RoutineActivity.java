@@ -6,16 +6,21 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.example.capstone_healthpass.DB.DBType;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class RoutineActivity extends Activity {
     private RadioGroup radioGroup;
+    private BottomNavigationView bottomNavigationView;
 
     String str = "";
     @SuppressLint("MissingInflatedId")
@@ -33,8 +38,33 @@ public class RoutineActivity extends Activity {
                 // 선택된 라디오 버튼의 텍스트를 가져옵니다.
                 str = selectedRadioButton.getText().toString();
 
-                // 선택된 라디오 버튼의 텍스트를 토스트 메시지로 표시합니다.
-                Toast.makeText(RoutineActivity.this, "선택된 라디오 버튼: " + str, Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+        });
+        // 네비게이션 아이템 클릭 리스너 설정
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        Intent intent = new Intent(RoutineActivity.this, MainActivity.class);
+                        startActivity(intent);//다음 액티비티 화면에
+                        break;
+                    case R.id.navigation_mypage:
+                        Intent intent1 = new Intent(RoutineActivity.this, MYpageActivity.class);
+                        startActivity(intent1);//다음 액티비티 화면에
+                        // 예: 마이페이지 화면으로 이동
+                        break;
+                    case R.id.navigation_qr_code:
+                        Intent intent3 = new Intent(RoutineActivity.this,QrActivity.class);
+                        startActivity(intent3);
+                        break;
+                }
+                return true;
             }
         });
     }

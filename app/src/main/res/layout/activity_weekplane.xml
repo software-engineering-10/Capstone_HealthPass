@@ -43,132 +43,139 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_margin="8dp"
-        android:shrinkColumns="*"
         android:layout_weight="5"
-        android:layout_gravity="center_vertical">
+        android:shrinkColumns="*">
 
 
         <TableRow>
+
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:backgroundTint="#AAA8A8"
                 android:id="@+id/sun"
-                android:text="일"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:backgroundTint="#AAA8A8"
-                android:textSize="16sp"
+                android:text="일"
+                android:textSize="16sp" />
+
+            <Button
                 android:id="@+id/mon"
-                android:text="월"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:backgroundTint="#AAA8A8"
-                android:textSize="16sp"
+                android:text="월"
+                android:textSize="16sp" />
+
+            <Button
                 android:id="@+id/tue"
-                android:text="화"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:backgroundTint="#AAA8A8"
-                android:id="@+id/wed"
-                android:textSize="16sp"
-                android:text="수"
-                android:layout_column="3"
-                android:layout_weight="1"/>
+                android:text="화"
+                android:textSize="16sp" />
+
             <Button
+                android:id="@+id/wed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:backgroundTint="#AAA8A8"
+                android:text="수"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/thu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_weight="1"
                 android:backgroundTint="#AAA8A8"
                 android:text="목"
-                android:id="@+id/thu"
-                android:textSize="16sp"
-                android:layout_column="4"
-                android:layout_weight="1"/>
+                android:textSize="16sp" />
+
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#AAA8A8"
-                android:textSize="16sp"
                 android:id="@+id/fri"
-                android:text="금"
-                android:layout_column="5"
-                android:layout_weight="1"/>
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="5"
+                android:layout_weight="1"
                 android:backgroundTint="#AAA8A8"
-                android:textSize="16sp"
+                android:text="금"
+                android:textSize="16sp" />
+
+            <Button
                 android:id="@+id/sat"
-                android:text="토"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="6"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:backgroundTint="#AAA8A8"
+                android:text="토"
+                android:textSize="16sp" />
 
         </TableRow>
 
         <TableRow>
 
             <LinearLayout
+                android:id="@+id/sundayList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sundayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/mondayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/tuesdayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/wednesdayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/thursdayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/fridayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/saturdayList"
-                android:orientation="vertical"
-                android:layout_weight="1">
-            </LinearLayout>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
         </TableRow>
     </TableLayout>
 

@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="280dp"
         android:layout_gravity="center"
         android:orientation="vertical">
 
@@ -25,6 +25,7 @@
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +61,7 @@
             android:layout_marginStart="76dp"
             android:layout_marginTop="5dp"
             android:ems="10"
-            android:hint="비밀번호"
+            android:hint="비밀번호(6자 이상 입력)"
             android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@+id/join_email" />
 
@@ -87,18 +88,20 @@
 
 </LinearLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/client"
         android:layout_width="207dp"
         android:layout_height="84dp"
         android:layout_gravity="center"
-        android:background="@drawable/client_sign_up"
-        android:text="Button"
+        android:background="#C4E2FA"
+        android:text="회원가입"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="513dp" />
+        tools:layout_editor_absoluteY="513dp"
+        android:onClick="register"/>
 
     <LinearLayout
         android:layout_width="match_parent"
