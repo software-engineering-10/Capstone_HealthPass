@@ -22,7 +22,7 @@ public class ReserveMachineActivity extends Activity {
 
     //변수
     TextView seat,personnel;//자리 버튼 선택시 2가지 정보 보여짐
-    Button btnInfo;//예약자 정보 입력
+
     Button btnNext; //다음 액티비티로 넘어가는 버튼
 
     Button[] numButtons = new Button[15];
@@ -60,6 +60,18 @@ public class ReserveMachineActivity extends Activity {
         tvHour2.setText(((ReserveDaytimeActivity)ReserveDaytimeActivity.DayContext).tvHour.getText());
         tvMinute2.setText(((ReserveDaytimeActivity)ReserveDaytimeActivity.DayContext).tvMinute.getText());
 
+        //예약자 명,연락처 dialog를 위한 변수 연결
+        tvName = (TextView)findViewById(R.id.tvName);
+        tvPhone = (TextView)findViewById(R.id.tvPhone);
+        if(MainActivity.userName!=""&&MainActivity.phone!=""){
+            tvName.setText(MainActivity.userName);
+            tvPhone.setText(MainActivity.phone);
+        }
+        else{
+            tvName.setText("");
+            tvPhone.setText("");
+        }
+
         //이전으로 돌아가기
         btnReturnToDay =(Button)findViewById(R.id.BtnReturnToDay);
         btnReturnToDay.setOnClickListener(new View.OnClickListener() {
@@ -75,56 +87,12 @@ public class ReserveMachineActivity extends Activity {
         //좌석 버튼 관련 요소들 연결
         seat = (TextView) findViewById(R.id.Seat);
         personnel = (TextView) findViewById(R.id.Personnel);
-        btnInfo = (Button)findViewById(R.id.BtnInfo);
+
         for(i=0;i<numButtons.length;i++){
             numButtons[i] = (Button)findViewById(numBtnIDs[i]);
         }
-        //예약자 명,연락처 dialog를 위한 변수 연결
-        tvName = (TextView)findViewById(R.id.tvName);
-        tvPhone = (TextView)findViewById(R.id.tvPhone);
-        btnInfo = (Button)findViewById(R.id.BtnInfo);
 
-        //다이얼로그 창 띄우는 버튼
-        btnInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //dialog1.xml 파일 인플레이트
-                dialogView = (View) View.inflate(ReserveMachineActivity.this,R.layout.activity_reserve_name,null);
 
-                //alertDialog.Builder 생성
-                AlertDialog.Builder dlg = new AlertDialog.Builder(ReserveMachineActivity.this);
-                dlg.setTitle("예약자 정보 입력");
-                dlg.setIcon(R.drawable.ic_menu_allfriends);
-                dlg.setView(dialogView); //인플레이트한 것을 대화상자로 사용
-
-                //setPositiveButton
-                dlg.setPositiveButton("확인",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dlgEdtName = (EditText)dialogView.findViewById(R.id.dlgEdt1);
-                                dlgEdtPhone =(EditText)dialogView.findViewById(R.id.dlgEdt2);
-
-                                tvName.setText(dlgEdtName.getText().toString());
-                                tvPhone.setText(dlgEdtPhone.getText().toString());
-
-                                Toast.makeText(getApplicationContext(),"예약자 정보 확인했습니다.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                //
-                dlg.setNegativeButton("취소",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(),"취소했습니다.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                dlg.show(); // dialog창 보이기
-            }
-        });
 
         //버튼 번호따라 자리 선택된 정보 띄움
         for(i=0;i<numButtons.length;i++){
@@ -141,30 +109,26 @@ public class ReserveMachineActivity extends Activity {
                         personnel.setText("런닝머신 (1시간)");
                         seat.setTextColor(Color.BLUE);
                         personnel.setTextColor(Color.BLUE);
-                        Toast.makeText(getApplicationContext(),
-                                "런닝머신" + (index + 1) + " 번을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+
                     } else if (index == 5 || index == 8) {
                         seat.setText((index + 1) + "번 "); //버튼 번호를 받아와 띄움
                         personnel.setText("펙덱머신 (30분)");
                         seat.setTextColor(Color.BLUE);
                         personnel.setTextColor(Color.BLUE);
-                        Toast.makeText(getApplicationContext(),
-                                "펙덱머신" + (index + 1) + " 번을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+
                     } else if (index == 6 || index == 7) {
                         seat.setText((index + 1) + "번 자리"); //버튼 번호를 받아와 띄움
-                        personnel.setText("바이크 (30분)");
+                        personnel.setText("사이클 머신 (30분)");
                         seat.setTextColor(Color.RED);
                         personnel.setTextColor(Color.RED);
-                        Toast.makeText(getApplicationContext(),
-                                "바이크" + (index + 1) + "번을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+
 
                     } else if (index == 10) {
                         seat.setText((index + 1) + "번 자리"); //버튼 번호를 받아와 띄움
-                        personnel.setText("바이크 (30분)");
+                        personnel.setText("사이클 머신 (30분)");
                         seat.setTextColor(Color.RED);
                         personnel.setTextColor(Color.RED);
-                        Toast.makeText(getApplicationContext(),
-                                "바이크" + (index + 1) + "번을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+
 
 
                     } else if (index == 9 || index == 11) {
@@ -172,16 +136,14 @@ public class ReserveMachineActivity extends Activity {
                         personnel.setText("하이풀 머신 (30분)");
                         seat.setTextColor(Color.BLUE);
                         personnel.setTextColor(Color.BLUE);
-                        Toast.makeText(getApplicationContext(),
-                                "하이풀 머신" + (index + 1) + "번을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+
 
                     } else{
                         seat.setText((index + 1) + "번 "); //버튼 번호를 받아와 띄움
                         personnel.setText("레그프레스 (30분)");
                         seat.setTextColor(Color.RED);
                         personnel.setTextColor(Color.RED);
-                        Toast.makeText(getApplicationContext(),
-                                "레그프레스" + (index + 1) + "번을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             });
@@ -225,6 +187,7 @@ public class ReserveMachineActivity extends Activity {
 
             }
         });
+
 
     }//onCreate 끝
 

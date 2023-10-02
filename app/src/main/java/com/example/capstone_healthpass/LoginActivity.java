@@ -15,8 +15,13 @@ import com.example.capstone_healthpass.server.ApiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +29,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
+    private String nameValue;
     private Retrofit retrofit;
     private ApiService apiService;
 
@@ -41,6 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.editTextTextEmailAddress);
         pwdText = findViewById(R.id.editTextTextPassword);
 
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
+                .addConverterFactory(GsonConverterFactory.create());
+        retrofit = builder.build();
+
+        apiService = retrofit.create(ApiService.class);
+
     }
 
     public void LoginAccount(View v){
@@ -55,30 +68,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginAccount(final String email, final String password){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://0666-220-69-208-115.ngrok.io")
-                .addConverterFactory(GsonConverterFactory.create(gson));
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
         apiService.loginPost(email,password).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-                Log.d("checkResponse","response "+response.code());
-                if(response.code()==201) {
-                    Toast.makeText(LoginActivity.this, "로그인 완료", Toast.LENGTH_SHORT).show();
-                    Intent result = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(result);
-                }
-                else if(response.code()==202){
-                    Toast.makeText(LoginActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                }
-                else if(response.code()==203){
-                    Toast.makeText(LoginActivity.this, "일치하는 정보가 없습니다.", Toast.LENGTH_SHORT).show();
 
+                Log.d("checkResponse","response "+response.code());
+                if (response.isSuccessful()) {
+                    if (response.code() == 201) {
+                        getInfo(email);
+
+
+
+                    } else if (response.code() == 202) {
+                        Toast.makeText(LoginActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    } else if (response.code() == 203) {
+                        Toast.makeText(LoginActivity.this, "일치하는 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "네트워크 오류입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -90,5 +100,41 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("responseBody",call.request().body().toString());
             }
         });
+    }
+    private void getInfo(final String email){
+
+        apiService.getName(email).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                try {
+                    String responseData = null;
+                    String decodedString = null;
+                    responseData = response.body().string();
+                    String[] data = responseData.split(",");
+                    decodedString = StringEscapeUtils.unescapeJava(data[0]);
+                    MainActivity.userName=decodedString;
+                    String name = decodedString.replace("\"","").replace("[","");
+                    String phone =  data[1].replace("\"","").replace("]","");
+                    nameValue=name;
+                    if(response.isSuccessful()){
+                        Log.d("responseTest",name+phone);
+                    }
+                    Intent result = new Intent(LoginActivity.this, MainActivity.class);
+                    result.putExtra("name",nameValue);
+                    result.putExtra("phone",phone);
+                    startActivity(result);
+                    finish();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("getInfoError",t.toString());
+            }
+        });
+
     }
 }
