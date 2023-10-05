@@ -4,12 +4,24 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+
+import com.example.capstone_healthpass.server.ApiService;
+
+import org.json.JSONObject;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveConfirmActivity  extends Activity {
 
@@ -19,6 +31,8 @@ public class ReserveConfirmActivity  extends Activity {
     TextView tvName2,tvPhone2;
     TextView seat2,personnel2;
     Button btnConfirm;
+    private Retrofit retrofit;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +112,48 @@ public class ReserveConfirmActivity  extends Activity {
             @Override
             public void onClick(View v) {
                 //Intent
-                Intent intent = new Intent(ReserveConfirmActivity.this, ReserveEndActivity.class);
-                startActivity(intent);//다음 액티비티 화면에 출력
+
+                String day = tvYear3.getText().toString() +tvMonth3.getText().toString() + tvDay3.getText().toString();
+                String time = tvHour3.getText().toString();
+                String seat = seat2.getText().toString();
+                Log.d("seat",seat);
+                String ex_name = personnel2.getText().toString();
+                reserveEx(day,time,seat,ex_name);
+
+                finish();
             }
         });
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
+                .addConverterFactory(GsonConverterFactory.create());
+        retrofit = builder.build();
 
+        apiService = retrofit.create(ApiService.class);
+    }
+    public void reserveEx(final String day, final String time, final String seat,final String ex_name){
+        apiService.reserved(day,time,MainActivity.email,seat,ex_name,MainActivity.userName,MainActivity.phone).enqueue(new Callback<JSONObject>() {
+            @Override
+            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                if(response.code()==201){
+                    Log.d("Reservation","ReservationComplete");
+                    Intent intent = new Intent(ReserveConfirmActivity.this, ReserveEndActivity.class);
+                    startActivity(intent);//다음 액티비티 화면에 출력
+                }
+                else if(response.code()==202){
+                    Log.d("Reservation","해당 기구는 이미 예약됨");
+                    Toast.makeText(ReserveConfirmActivity.this, "해당 기구는 이미 예약됨", Toast.LENGTH_SHORT).show();
+                }
+                else if(response.code()==203){
+                    Log.d("Reservation","시간 중복");
+                    Toast.makeText(ReserveConfirmActivity.this, "선택하신 시간에 이미 예약 기록이 있습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JSONObject> call, Throwable t) {
+                Log.d("fail",t.toString());
+            }
+        });
     }
 
 }

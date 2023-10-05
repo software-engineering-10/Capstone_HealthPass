@@ -1,7 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/Relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FAFAFA"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="80dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:background="#FC3F88EB"
+            android:gravity="center"
+            android:text="운 동 추 천"
+            android:textColor="#F8F8F8"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/check_btn"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="660dp"
+            android:onClick="clickCheck"
+            android:text="확 인" />
+
+        <TextView
+            android:id="@+id/infoMessage"
+            android:layout_width="410dp"
+            android:layout_height="57dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="52dp"
+            android:text="원하는 운동 부위를 선택하고 확인 버튼을 눌러주세요"
+            android:textColor="#2b448d"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="603dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="154dp">
+
+            <RadioButton
+                android:id="@+id/biceps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="이두" />
+
+            <RadioButton
+                android:id="@+id/triceps"
+                android:layout_width="74dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="삼두" />
+
+            <RadioButton
+                android:id="@+id/chest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="가슴" />
+
+            <RadioButton
+                android:id="@+id/shoulder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="어깨" />
+
+            <RadioButton
+                android:id="@+id/body_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="등" />
+
+            <RadioButton
+                android:id="@+id/leg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="하체" />
+
+            <RadioButton
+                android:id="@+id/stomach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="복부" />
+
+            <RadioButton
+                android:id="@+id/cardio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+
+                android:text="맨몸" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/bottom">
+
+        </FrameLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_navigation_menu" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
