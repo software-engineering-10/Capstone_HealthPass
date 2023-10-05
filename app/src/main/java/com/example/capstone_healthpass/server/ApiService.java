@@ -36,6 +36,16 @@ public interface ApiService {
             @Query("email") String email
 
     );
-
+    @FormUrlEncoded
+    @POST("/reservation/")
+    Call<JSONObject> reserved(
+            @Field("day") String day,
+            @Field("time") String time,
+            @Field("email") String email,
+            @Field("seat") String seat,
+            @Field("ex_name") String ex_name,
+            @Field("user_name") String user_name,
+            @Field("user_phone") String user_phone
+    );
 
 }

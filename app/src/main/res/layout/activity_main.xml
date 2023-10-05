@@ -64,6 +64,19 @@
         />
 
     <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="134dp"
+        android:layout_height="47dp"
+        android:text="로그아웃"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225"
+        tools:ignore="MissingConstraints" />
+    <Button
         android:id="@+id/routine_btn"
         android:layout_width="162dp"
         android:layout_height="146dp"
@@ -76,15 +89,16 @@
 
     <Button
         android:id="@+id/gps_btn"
-        android:layout_width="170dp"
-        android:layout_height="153dp"
+        android:layout_width="166dp"
+        android:layout_height="154dp"
         android:background="@drawable/gps_use_drawable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.856"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72" />
+        app:layout_constraintVertical_bias="0.72"
+        />
 
     <Button
         android:id="@+id/Health_diary_btn"
@@ -99,31 +113,32 @@
         app:layout_constraintVertical_bias="0.449" />
 
 
-
     <TextView
         android:id="@+id/name"
         android:layout_width="60dp"
-        android:layout_height="26dp"
+        android:layout_height="24dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.146"
+        android:gravity="center"/>
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="735dp"
+        android:layout_width="412dp"
+        android:layout_height="725dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="10dp">
 
         <FrameLayout
             android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="556dp"
-            android:layout_weight="1">
+            android:layout_height="0dp"
+            android:layout_weight="6">
 
         </FrameLayout>
 

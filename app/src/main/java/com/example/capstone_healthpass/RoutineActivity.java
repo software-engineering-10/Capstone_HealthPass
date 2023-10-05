@@ -79,7 +79,7 @@ public class RoutineActivity extends Activity {
             intent.putExtra("name", str);
             Log.d("strCheck",str);
             startActivity(intent);//다음 액티비티 화면에 출력
-            finish();
+
         }
         else{
             Toast.makeText(this, "부위를 선택해주세요", Toast.LENGTH_SHORT).show();
