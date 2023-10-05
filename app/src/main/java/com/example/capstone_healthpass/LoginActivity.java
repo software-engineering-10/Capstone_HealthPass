@@ -64,7 +64,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     public void cancel(View v){
-
+        Intent result = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(result);
+        finish();
     }
 
     private void loginAccount(final String email, final String password){
@@ -77,8 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.code() == 201) {
                         getInfo(email);
-
-
 
                     } else if (response.code() == 202) {
                         Toast.makeText(LoginActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -115,7 +115,11 @@ public class LoginActivity extends AppCompatActivity {
                     decodedString = StringEscapeUtils.unescapeJava(data[0]);
                     MainActivity.userName=decodedString;
                     String name = decodedString.replace("\"","").replace("[","");
-                    String phone =  data[1].replace("\"","").replace("]","");
+                    String phone =  data[1].replace("\"","").replace(" ","");
+                    String email = data[2].replace("\"","").replace("]","").replace(" ","");
+                    Log.d("name",name);
+                    Log.d("phone",phone);
+                    Log.d("email",email);
                     nameValue=name;
                     if(response.isSuccessful()){
                         Log.d("responseTest",name+phone);
@@ -123,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                     Intent result = new Intent(LoginActivity.this, MainActivity.class);
                     result.putExtra("name",nameValue);
                     result.putExtra("phone",phone);
+                    result.putExtra("email",email);
+                    Toast.makeText(LoginActivity.this, name+"님, 반갑습니다.", Toast.LENGTH_SHORT).show();
                     startActivity(result);
                     finish();
                 } catch (IOException e) {

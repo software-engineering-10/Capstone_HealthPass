@@ -2,6 +2,7 @@ package com.example.capstone_healthpass;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     boolean flag;
     public static String userName="";
     public static String phone="";
+    public static String email="";
     private Button join_Btn;
     private Button reserve_btn;
     private Button routine_btn;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Health_diary_btn;
     private WeekPlanFragment weekPlanFragment;
     private BottomNavigationView bottomNavigationView;
-    private Button login_btn;
+    private Button login_btn,logout_btn;
     Intent intent;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,19 +48,63 @@ public class MainActivity extends AppCompatActivity {
         join_Btn = (Button) findViewById(R.id.register_Btn);
         name=findViewById(R.id.name);
         intent=getIntent();
+        logout_btn = findViewById(R.id.logout_btn);
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());
+                alertDialogBuilder.setMessage("로그아웃 하시겠습니까?");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(MainActivity.this, "로그아웃 완료했습니다..", Toast.LENGTH_SHORT).show();
+                                MainActivity.userName = "";
+                                MainActivity.phone="";
+                                MainActivity.email="";
+                                Intent logout_intent = new Intent(MainActivity.this, MainActivity.class);
+                                login_btn.setVisibility(View.VISIBLE);
+                                join_Btn.setVisibility(View.VISIBLE);
+                                logout_btn.setVisibility(View.INVISIBLE);
+                                startActivity(logout_intent);
+                                finish();
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss(); // 취소 버튼을 누르면 팝업을 닫습니다.
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create(); // AlertDialog 생성
+                alertDialog.show(); // AlertDialog 표시
+            }
+        });
         if (intent != null && intent.hasExtra("name")){
             userName = intent.getStringExtra("name");
             phone = intent.getStringExtra("phone");
+            email = intent.getStringExtra("email");
 
             name.setText(userName);
             login_btn.setVisibility(View.INVISIBLE);
             join_Btn.setVisibility(View.INVISIBLE);
+            logout_btn.setVisibility(View.VISIBLE);
+
         }
         else if(userName!="") {
             name.setText(userName);
             Log.d("names",name.getText().toString());
             login_btn.setVisibility(View.INVISIBLE);
             join_Btn.setVisibility(View.INVISIBLE);
+            logout_btn.setVisibility(View.VISIBLE);
+        }
+        else{
+            MainActivity.userName="";
+            name.setText("");
+            login_btn.setVisibility(View.VISIBLE);
+            join_Btn.setVisibility(View.VISIBLE);
         }
 
 
@@ -69,20 +116,21 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        AppManager.finishAllActivities();
                         startActivity(intent);//다음 액티비티 화면에
+                        finish();
                         break;
                     case R.id.navigation_mypage:
                         Intent intent1 = new Intent(MainActivity.this, MYpageActivity.class);
-                        AppManager.finishAllActivities();
-                        startActivity(intent1);//다음 액티비티 화면에
 
+                        startActivity(intent1);//다음 액티비티 화면에
+                        finish();
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
                         Intent intent3 = new Intent(MainActivity.this, QrActivity.class);
-                        AppManager.finishAllActivities();
+
                         startActivity(intent3);
+                        finish();
                         break;
                 }
                 return true;
@@ -95,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);//다음 액티비티 화면에 출력
-                finish();
+
             }
         });
 
@@ -105,9 +153,9 @@ public class MainActivity extends AppCompatActivity {
                 //다음 액티비티로 가는 것
                 //Intent
                 Intent intent = new Intent(MainActivity.this, JoinActivity.class);
-
                 startActivity(intent);//다음 액티비티 화면에 출력
-                finish();
+
+
             }
         });
         //회원가입 누르면 JoinActivity로 이동
@@ -124,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     Intent intent = new Intent(MainActivity.this, ReserveDaytimeActivity.class);
                     startActivity(intent);//다음 액티비티 화면에 출력
-                    finish();
+
                 }
             }
         });
@@ -196,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
             join_Btn.setVisibility(View.VISIBLE);
             reserve_btn.setVisibility(View.VISIBLE);
             name.setVisibility(View.VISIBLE);
+            logout_btn.setVisibility(View.INVISIBLE);
         }
 
         // 기존 버튼들 다시 표시
@@ -209,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
         DataBaseHelper dbHelper = new DataBaseHelper(this);
         dbHelper.close();
     }
+
 
 
 }
