@@ -24,7 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveConfirmActivity  extends Activity {
-
+    String strMinute="";
     //daytime 에서 가져올 변수
     TextView tvYear3, tvMonth3, tvDay3, tvHour3, tvMinute3;
 
@@ -116,11 +116,20 @@ public class ReserveConfirmActivity  extends Activity {
                 String day = tvYear3.getText().toString() +tvMonth3.getText().toString() + tvDay3.getText().toString();
                 String time = tvHour3.getText().toString();
                 String seat = seat2.getText().toString();
-                Log.d("seat",seat);
+
+                int minute = Integer.parseInt(tvMinute3.getText().toString());
+
+                if(minute < 30){
+                    strMinute="0";
+                }
+                else{
+                    strMinute="30";
+                }
                 String ex_name = personnel2.getText().toString();
-                reserveEx(day,time,seat,ex_name);
+                reserveEx(day,time,strMinute,seat,ex_name);
 
                 finish();
+
             }
         });
         Retrofit.Builder builder = new Retrofit.Builder()
@@ -130,12 +139,14 @@ public class ReserveConfirmActivity  extends Activity {
 
         apiService = retrofit.create(ApiService.class);
     }
-    public void reserveEx(final String day, final String time, final String seat,final String ex_name){
-        apiService.reserved(day,time,MainActivity.email,seat,ex_name,MainActivity.userName,MainActivity.phone).enqueue(new Callback<JSONObject>() {
+    public void reserveEx(final String day, final String time, final String minute,final String seat,final String ex_name){
+        Log.d("miute",minute);
+        apiService.reserved(day,time,minute,MainActivity.email,seat,ex_name,MainActivity.userName,MainActivity.phone).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                 if(response.code()==201){
                     Log.d("Reservation","ReservationComplete");
+
                     Intent intent = new Intent(ReserveConfirmActivity.this, ReserveEndActivity.class);
                     startActivity(intent);//다음 액티비티 화면에 출력
                 }

@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.capstone_healthpass.server.ApiService;
+
+import retrofit2.Retrofit;
+
 public class ReserveEndActivity extends Activity {
 
     TextView tvYear4, tvMonth4, tvDay4, tvHour4, tvMinute4;
@@ -30,13 +34,21 @@ public class ReserveEndActivity extends Activity {
         tvDay4 = (TextView) findViewById(R.id.tvDay4);
         tvHour4 = (TextView) findViewById(R.id.tvHour4);
         tvMinute4 = (TextView) findViewById(R.id.tvMinute4);
+        int minute = Integer.parseInt(tvMinute4.getText().toString());
 
         tvYear4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvYear.getText());
+
+
         tvMonth4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvMonth.getText());
         tvDay4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvDay.getText());
         tvHour4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvHour.getText());
         tvMinute4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvMinute.getText());
-
+         if(minute==30){
+             tvMinute4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvMinute.getText()+"~60");
+         }
+         else{
+             tvMinute4.setText(((ReserveDaytimeActivity) ReserveDaytimeActivity.DayContext).tvMinute.getText()+"~30");
+         }
         btnReturnToHome = (Button) findViewById(R.id.BtnReturnToHome);
         btnReturnToHome.setOnClickListener(new View.OnClickListener() {
             @Override
