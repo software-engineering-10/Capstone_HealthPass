@@ -49,19 +49,19 @@ public class MYpageActivity  extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         Intent intent = new Intent(MYpageActivity.this, MainActivity.class);
-                        AppManager.finishAllActivities();
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);//다음 액티비티 화면에
                         break;
                     case R.id.navigation_mypage:
                         Intent intent1 = new Intent(MYpageActivity.this, MYpageActivity.class);
-                        AppManager.finishAllActivities();
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent1);//다음 액티비티 화면에
 
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
                         Intent intent3 = new Intent(MYpageActivity.this, QrActivity.class);
-                        AppManager.finishAllActivities();
+                        intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent3);
                         break;
                 }
