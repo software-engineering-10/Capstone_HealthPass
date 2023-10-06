@@ -130,16 +130,16 @@ public class ReserveConfirmActivity  extends Activity {
                 //다음 액티비티로 가는 것
                 //Intent
                 String day = formattedDate;
-                String time = tvHour3.getText().toString();
+                String time = tvHour3.getText().toString()+"시";
                 String seat = seat2.getText().toString();
 
                 int minute = Integer.parseInt(tvMinute3.getText().toString());
 
                 if(minute < 30){
-                    strMinute="0";
+                    strMinute="0분";
                 }
                 else{
-                    strMinute="30";
+                    strMinute="30분";
                 }
                 String ex_name = personnel2.getText().toString();
                 reserveEx(day,time,strMinute,seat,ex_name);
@@ -156,7 +156,7 @@ public class ReserveConfirmActivity  extends Activity {
         apiService = retrofit.create(ApiService.class);
     }
     public void reserveEx(final String day, final String time, final String minute,final String seat,final String ex_name){
-        Log.d("miute",minute);
+
         apiService.reserved(day,time,minute,MainActivity.email,seat,ex_name,MainActivity.userName,MainActivity.phone).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {

@@ -243,6 +243,7 @@ public class ReserveMachineActivity extends Activity {
         apiService.reservedMachine(day,time,minute,seat,ex_name).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
                 if(response.code()==201) {
                     Intent intent = new Intent(ReserveMachineActivity.this, ReserveConfirmActivity.class);
                     startActivity(intent);//다음 액티비티 화면에 출력

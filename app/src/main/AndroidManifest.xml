@@ -25,43 +25,43 @@
             />
         <activity android:name=".ReserveEndActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+           />
         <activity android:name=".ReserveMachineActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".LoginActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".ReserveConfirmActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".ReserveDaytimeActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".JoinActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".gpsActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".RecommendationActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".RoutineActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".MYpageActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".QrActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".CreateQR"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name=".ScanQR"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            />
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>

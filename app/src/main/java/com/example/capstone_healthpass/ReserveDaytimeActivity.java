@@ -105,9 +105,10 @@ public class ReserveDaytimeActivity extends Activity {
                     tPicker.setHour(6);
                     tPicker.setMinute(0);
                 }
-
-                tPicker.setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1);
-                tPicker.setMinute(0);
+                else {
+                    tPicker.setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1);
+                    tPicker.setMinute(0);
+                }
             } else {
                 if (tPicker.getHour() < 6 || tPicker.getHour() == 23) {
                     tPicker.setHour(6);
