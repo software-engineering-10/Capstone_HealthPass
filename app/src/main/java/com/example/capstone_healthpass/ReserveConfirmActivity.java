@@ -16,6 +16,10 @@ import com.example.capstone_healthpass.server.ApiService;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,8 +116,20 @@ public class ReserveConfirmActivity  extends Activity {
             @Override
             public void onClick(View v) {
                 //Intent
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, Integer.parseInt(tvYear3.getText() .toString()));
+                calendar.set(Calendar.MONTH, Integer.parseInt(tvMonth3.getText().toString())); // 월은 0부터 시작하므로 9는 10월을 나타냅니다.
+                calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(tvDay3.getText() .toString()));
+                Date date = calendar.getTime();
 
-                String day = tvYear3.getText().toString() +tvMonth3.getText().toString() + tvDay3.getText().toString();
+                // 원하는 날짜 형식 지정
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                // 날짜를 문자열로 변환
+                String formattedDate = sdf.format(date);
+                //다음 액티비티로 가는 것
+                //Intent
+                String day = formattedDate;
                 String time = tvHour3.getText().toString();
                 String seat = seat2.getText().toString();
 
@@ -128,7 +144,7 @@ public class ReserveConfirmActivity  extends Activity {
                 String ex_name = personnel2.getText().toString();
                 reserveEx(day,time,strMinute,seat,ex_name);
 
-                finish();
+
 
             }
         });

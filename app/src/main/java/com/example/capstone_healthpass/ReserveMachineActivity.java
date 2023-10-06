@@ -19,6 +19,10 @@ import com.example.capstone_healthpass.server.ApiService;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -201,7 +205,21 @@ public class ReserveMachineActivity extends Activity {
 
                 }
                 else {
-                    String day = tvYear2.getText() .toString()+ tvMonth2.getText().toString() + tvDay2.getText().toString();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.YEAR, Integer.parseInt(tvYear2.getText() .toString()));
+                    calendar.set(Calendar.MONTH, Integer.parseInt(tvMonth2.getText().toString())); // 월은 0부터 시작하므로 9는 10월을 나타냅니다.
+                    calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(tvDay2.getText() .toString()));
+                    Date date = calendar.getTime();
+
+                    // 원하는 날짜 형식 지정
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                    // 날짜를 문자열로 변환
+                    String formattedDate = sdf.format(date);
+                    //다음 액티비티로 가는 것
+                    //Intent
+                    String day = formattedDate;
+
                     String hour = tvHour2.getText().toString();
                     String minute = tvMinute2.getText().toString();
                     String seats = seat.getText().toString();

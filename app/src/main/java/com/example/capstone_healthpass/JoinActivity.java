@@ -62,19 +62,22 @@ public class JoinActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);//다음 액티비티 화면에
-                        finish();
+
                         break;
                     case R.id.navigation_mypage:
                         Intent intent1 = new Intent(JoinActivity.this, MYpageActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent1);//다음 액티비티 화면에
-                        AppManager.finishAllActivities();
+
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
                         Intent intent3 = new Intent(JoinActivity.this,QrActivity.class);
+                        intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent3);
-                        finish();
+
                         break;
                 }
                 return true;
