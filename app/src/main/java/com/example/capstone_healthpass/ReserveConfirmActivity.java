@@ -164,7 +164,9 @@ public class ReserveConfirmActivity  extends Activity {
                     Log.d("Reservation","ReservationComplete");
 
                     Intent intent = new Intent(ReserveConfirmActivity.this, ReserveEndActivity.class);
+
                     startActivity(intent);//다음 액티비티 화면에 출력
+                    finish();
                 }
                 else if(response.code()==202){
                     Log.d("Reservation","해당 기구는 이미 예약됨");

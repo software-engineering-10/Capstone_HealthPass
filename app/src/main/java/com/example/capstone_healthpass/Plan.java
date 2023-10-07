@@ -10,10 +10,12 @@ public class Plan {
         this.exerPartArray = exerPartArray;
     }
 
-    public String getWeekly(){ return weekly;
+    public String getWeekly(){
+        return weekly;
     }
 
     public String getExerPartArray() {
+
         return exerPartArray;
     }
 }

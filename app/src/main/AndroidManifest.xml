@@ -53,6 +53,9 @@
         <activity android:name=".MYpageActivity"
             android:exported="true"
             />
+        <activity android:name=".WeekPlanActivity"
+            android:exported="true"
+            />
         <activity android:name=".QrActivity"
             android:exported="true"
             />

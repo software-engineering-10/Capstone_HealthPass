@@ -5,20 +5,20 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-   android:background="@color/white"
-    android:weightSum="10">
+    tools:context=".WeekPlanActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:weightSum="10">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="413dp"
-            android:layout_height="46dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:background="#FC3F88EB"
             android:gravity="center"
             android:text="주간 운동 계획"
@@ -32,8 +32,6 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="18dp"
             android:text="이전"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,12 +41,11 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center_vertical"
         android:layout_margin="8dp"
-        android:layout_weight="5"
+        android:layout_weight="1"
         android:shrinkColumns="*">
-
 
         <TableRow>
 
@@ -140,48 +137,60 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/tuesdayList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/wednesdayList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/thursdayList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/fridayList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/saturdayList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
         </TableRow>
     </TableLayout>
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="48dp">
 
         <TableRow>
             <!-- 삭제 버튼 -->
@@ -189,12 +198,12 @@
                 android:id="@+id/del"
                 android:layout_width="85dp"
                 android:layout_height="70dp"
-                android:textColor="@color/white"
-                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:layout_marginLeft="60dp"
+                android:layout_weight="1"
                 android:background="#FC3F88EB"
                 android:text="삭제"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
             <!-- 저장 버튼 -->
@@ -202,26 +211,29 @@
                 android:id="@+id/sav"
                 android:layout_width="85dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="60dp"
-                android:textColor="@color/white"
-                android:layout_weight="1"
                 android:layout_gravity="center"
+                android:layout_marginRight="60dp"
+                android:layout_weight="1"
                 android:background="#FC3F88EB"
                 android:text="저장"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
         </TableRow>
     </TableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_height="244dp">
 
         <ListView
-            android:id="@android:id/list"
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"></ListView>
+            android:clickable="true"
+            tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+
+
+
     </LinearLayout>
 
 

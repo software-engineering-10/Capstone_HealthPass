@@ -129,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                     result.putExtra("phone",phone);
                     result.putExtra("email",email);
                     Toast.makeText(LoginActivity.this, name+"님, 반갑습니다.", Toast.LENGTH_SHORT).show();
+                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(result);
                     finish();
                 } catch (IOException e) {
