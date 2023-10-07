@@ -246,7 +246,9 @@ public class ReserveMachineActivity extends Activity {
 
                 if(response.code()==201) {
                     Intent intent = new Intent(ReserveMachineActivity.this, ReserveConfirmActivity.class);
+
                     startActivity(intent);//다음 액티비티 화면에 출력
+                    finish();
                 }
                 else if (response.code()==202){
                     Toast.makeText(ReserveMachineActivity.this,"선택하신 시간의 운동기구는 이미 예약 되어 있습니다.",

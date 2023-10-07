@@ -55,9 +55,10 @@ public class ReserveEndActivity extends Activity {
             public void onClick(View v) {
                 //다시 메인 액티비티로 가는 것
                 //Intent
-                Intent intent = new Intent(ReserveEndActivity.this, MainActivity.class); //다음 클래스 정보 입력
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent intent = new Intent(ReserveEndActivity.this, MainActivity.class);
+
                 startActivity(intent);//다음 액티비티 화면에 출력
+                finish();
             }
         });
     }

@@ -206,11 +206,11 @@ public class ReserveDaytimeActivity extends Activity {
                 int currentMonth = currentCalendar.get(Calendar.MONTH);
                 int currentDayOfMonth = currentCalendar.get(Calendar.DAY_OF_MONTH);
 
-                if(tPicker.getHour() < Calendar.getInstance().get(Calendar.HOUR_OF_DAY) &&
-                        tPicker.getMinute() < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-                && dPicker.getYear() < currentYear
-                && dPicker.getMonth() < currentMonth
-                && dPicker.getDayOfMonth() < currentDayOfMonth){
+                if((tPicker.getHour() < Calendar.getInstance().get(Calendar.HOUR_OF_DAY) &&
+                        tPicker.getMinute() < Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+                || dPicker.getYear() < currentYear
+                || dPicker.getMonth() < currentMonth
+                || dPicker.getDayOfMonth() < currentDayOfMonth){
                     Toast.makeText(getApplicationContext(), "이전 날짜는 선택할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else
@@ -231,7 +231,9 @@ public class ReserveDaytimeActivity extends Activity {
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                 if (response.code()==201){
                     Intent intent = new Intent(ReserveDaytimeActivity.this, ReserveMachineActivity.class); //다음 클래스 정보 입력
+
                     startActivity(intent);//다음 액티비티 화면에 출력
+                    finish();
                 }
                 else if (response.code()==203){
                     Toast.makeText(ReserveDaytimeActivity.this,"선택하신 시간은 이미 예약하셨습니다.",
