@@ -38,8 +38,8 @@ public class JoinActivity extends AppCompatActivity {
     private EditText join_name,join_email,join_password,join_pwck,join_phone;
     private BottomNavigationView bottomNavigationView;
     Gson gson;
-    private Retrofit retrofit;
-    private ApiService apiService;
+
+    RetrofitManager retrofitManager = new RetrofitManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,13 +119,10 @@ public class JoinActivity extends AppCompatActivity {
     }
     private void registerAccount(final String name,final String phone, final String email, final String password){
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
-        apiService.requestPost(name,phone,email,password).enqueue(new Callback<JSONObject>() {
+
+
+        retrofitManager.getApiService().requestPost(name,phone,email,password).enqueue(new Callback<JSONObject>() {
 
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {

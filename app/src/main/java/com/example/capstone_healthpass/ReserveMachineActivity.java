@@ -31,8 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveMachineActivity extends Activity {
     //Context로 다음 액티비티에서 정보 사용
-    private Retrofit retrofit;
-    private ApiService apiService;
+    RetrofitManager retrofitManager = new RetrofitManager();
     public static Context ReserveContext;
     //daytime 에서 가져올 변수
     TextView tvYear2, tvMonth2, tvDay2, tvHour2, tvMinute2;
@@ -234,13 +233,8 @@ public class ReserveMachineActivity extends Activity {
 
     }//onCreate 끝
     public void reservedMachine(final String day, final String time, final String minute, final String seat, final String ex_name){
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
-        apiService.reservedMachine(day,time,minute,seat,ex_name).enqueue(new Callback<JSONObject>() {
+        retrofitManager.getApiService().reservedMachine(day,time,minute,seat,ex_name).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
 

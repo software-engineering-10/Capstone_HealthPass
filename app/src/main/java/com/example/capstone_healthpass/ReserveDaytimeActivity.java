@@ -42,8 +42,7 @@ public class ReserveDaytimeActivity extends Activity {
     Button btnDayOk;
     Button btnToTable;
 
-    private Retrofit retrofit;
-    private ApiService apiService;
+    RetrofitManager retrofitManager = new RetrofitManager();
     boolean flag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,13 +219,8 @@ public class ReserveDaytimeActivity extends Activity {
         });
     }
     public void reservedTime(final String day, final String time, final String minute, final String email){
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
-        apiService.reservedTime(day,time,minute,MainActivity.email).enqueue(new Callback<JSONObject>() {
+        retrofitManager.getApiService().reservedTime(day,time,minute,MainActivity.email).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                 if (response.code()==201){
