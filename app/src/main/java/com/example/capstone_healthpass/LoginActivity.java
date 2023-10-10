@@ -30,13 +30,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     private String nameValue;
-    private Retrofit retrofit;
-    private ApiService apiService;
+
 
     private Button btnCheck, btnCancel;
 
     private EditText emailText, pwdText;
-
+    RetrofitManager retrofitManager = new RetrofitManager();
     @SuppressLint("MissingInflatedId")
     @Override
     public void onCreate(Bundle savedInstance){
@@ -47,12 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.editTextTextEmailAddress);
         pwdText = findViewById(R.id.editTextTextPassword);
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
 
     }
 
@@ -71,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginAccount(final String email, final String password){
 
-        apiService.loginPost(email,password).enqueue(new Callback<JSONObject>() {
+
+        retrofitManager.getApiService().loginPost(email,password).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
 
@@ -103,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void getInfo(final String email){
 
-        apiService.getName(email).enqueue(new Callback<ResponseBody>() {
+        retrofitManager.getApiService().getName(email).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 

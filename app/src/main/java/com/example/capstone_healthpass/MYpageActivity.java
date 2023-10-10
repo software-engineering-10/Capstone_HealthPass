@@ -49,8 +49,7 @@ public class MYpageActivity  extends AppCompatActivity {
     private RadioGroup radioGroup;
     private ArrayList<String> dataList; // 라디오 버튼에 추가할 데이터 목록
     public BottomNavigationView bottomNavigationView;
-    private Retrofit retrofit;
-    private ApiService apiService;
+    RetrofitManager retrofitManager = new RetrofitManager();
     private ArrayList<String> array;
     String selectedOption="";
     private Button button;
@@ -102,13 +101,8 @@ public class MYpageActivity  extends AppCompatActivity {
 
     }
     public void reservedInfos(final String email){
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
-        apiService.reservedInfo(email).enqueue(new Callback<List<Reservation>>() {
+        retrofitManager.getApiService().reservedInfo(email).enqueue(new Callback<List<Reservation>>() {
             @Override
             public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
                 if(response.code()==201){
@@ -144,13 +138,8 @@ public class MYpageActivity  extends AppCompatActivity {
         });
     }
     public void canceled(final String day, final String time, final String minute, final String seat, final String ex_name){
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
-        apiService.reservedCancel(day,time,minute,seat,ex_name).enqueue(new Callback<ResponseBody>() {
+        retrofitManager.getApiService().reservedCancel(day,time,minute,seat,ex_name).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.code()==201){

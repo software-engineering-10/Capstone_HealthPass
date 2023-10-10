@@ -35,9 +35,7 @@ public class ReserveConfirmActivity  extends Activity {
     TextView tvName2,tvPhone2;
     TextView seat2,personnel2;
     Button btnConfirm;
-    private Retrofit retrofit;
-    private ApiService apiService;
-
+    RetrofitManager retrofitManager = new RetrofitManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,16 +146,13 @@ public class ReserveConfirmActivity  extends Activity {
 
             }
         });
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://b1ca-220-69-208-115.ngrok-free.app")
-                .addConverterFactory(GsonConverterFactory.create());
-        retrofit = builder.build();
 
-        apiService = retrofit.create(ApiService.class);
+
+
     }
     public void reserveEx(final String day, final String time, final String minute,final String seat,final String ex_name){
 
-        apiService.reserved(day,time,minute,MainActivity.email,seat,ex_name,MainActivity.userName,MainActivity.phone).enqueue(new Callback<JSONObject>() {
+        retrofitManager.getApiService().reserved(day,time,minute,MainActivity.email,seat,ex_name,MainActivity.userName,MainActivity.phone).enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                 if(response.code()==201){
