@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.capstone_healthpass.server.ApiService;
+import com.example.capstone_healthpass.server.RetrofitManager;
 
 import org.json.JSONObject;
 
@@ -20,12 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveConfirmActivity  extends Activity {
     String strMinute="";
@@ -116,7 +113,7 @@ public class ReserveConfirmActivity  extends Activity {
                 //Intent
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.YEAR, Integer.parseInt(tvYear3.getText() .toString()));
-                calendar.set(Calendar.MONTH, Integer.parseInt(tvMonth3.getText().toString())); // 월은 0부터 시작하므로 9는 10월을 나타냅니다.
+                calendar.set(Calendar.MONTH, Integer.parseInt(tvMonth3.getText().toString())-1);
                 calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(tvDay3.getText() .toString()));
                 Date date = calendar.getTime();
 
@@ -127,6 +124,7 @@ public class ReserveConfirmActivity  extends Activity {
                 String formattedDate = sdf.format(date);
                 //다음 액티비티로 가는 것
                 //Intent
+                Log.d("day",formattedDate);
                 String day = formattedDate;
                 String time = tvHour3.getText().toString()+"시";
                 String seat = seat2.getText().toString();
@@ -159,7 +157,7 @@ public class ReserveConfirmActivity  extends Activity {
                     Log.d("Reservation","ReservationComplete");
 
                     Intent intent = new Intent(ReserveConfirmActivity.this, ReserveEndActivity.class);
-
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);//다음 액티비티 화면에 출력
                     finish();
                 }

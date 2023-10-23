@@ -87,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
             login_btn.setVisibility(View.INVISIBLE);
             join_Btn.setVisibility(View.INVISIBLE);
             logout_btn.setVisibility(View.VISIBLE);
-
+            Intent result = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(result);
+            finish();
         }
         else if(userName!="") {
             name.setText(userName);
@@ -112,11 +114,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        finish();
                         startActivity(intent);//다음 액티비티 화면에
-
-
-
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        finish();
                         break;
                     case R.id.navigation_mypage:
                         Intent intent1 = new Intent(MainActivity.this, MYpageActivity.class);
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "로그인 후 이용 바랍니다.", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent = new Intent(MainActivity.this, ReserveDaytimeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                     startActivity(intent);//다음 액티비티 화면에 출력
 
                 }
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
                Intent week = new Intent(MainActivity.this,WeekPlanActivity.class);
                startActivity(week);
-               finish();
+
             }
         });
     }
