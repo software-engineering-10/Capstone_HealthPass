@@ -2,7 +2,6 @@ package com.example.capstone_healthpass;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,9 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-
-import com.example.capstone_healthpass.server.ApiService;
+import com.example.capstone_healthpass.server.RetrofitManager;
 
 import org.json.JSONObject;
 
@@ -26,8 +23,6 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveMachineActivity extends Activity {
     //Context로 다음 액티비티에서 정보 사용
@@ -208,6 +203,7 @@ public class ReserveMachineActivity extends Activity {
                     calendar.set(Calendar.YEAR, Integer.parseInt(tvYear2.getText() .toString()));
                     calendar.set(Calendar.MONTH, Integer.parseInt(tvMonth2.getText().toString())); // 월은 0부터 시작하므로 9는 10월을 나타냅니다.
                     calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(tvDay2.getText() .toString()));
+                    Log.d("Month", tvMonth2.getText().toString());
                     Date date = calendar.getTime();
 
                     // 원하는 날짜 형식 지정

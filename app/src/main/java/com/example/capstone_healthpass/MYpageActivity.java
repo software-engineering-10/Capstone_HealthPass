@@ -1,31 +1,25 @@
 package com.example.capstone_healthpass;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstone_healthpass.server.ApiService;
 import com.example.capstone_healthpass.server.Reservation;
+import com.example.capstone_healthpass.server.RetrofitManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +27,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MYpageActivity  extends AppCompatActivity {
 
@@ -63,7 +55,27 @@ public class MYpageActivity  extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                canceled(reserveDay,reserveTime,reserveMinute,reserveSeat,reserveEx_name);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(MYpageActivity.this);
+                dlg.setTitle("예약 취소");
+                dlg.setIcon(R.drawable.cat);
+                dlg.setMessage("정말 예약을 취소하시겠습니까?");
+                dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"예약이 취소 되었습니다.\n 완료 버튼을 누르세요",
+                                Toast.LENGTH_SHORT).show();
+                        canceled(reserveDay,reserveTime,reserveMinute,reserveSeat,reserveEx_name);
+
+                    }
+                });
+                dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dlg.show(); //***
+
             }
         });
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -121,7 +133,7 @@ public class MYpageActivity  extends AppCompatActivity {
                         radioButton.setOnClickListener(view -> {
                             // 선택된 라디오 버튼의 텍스트를 가져와서 사용 가능
                             selectedOption = ((RadioButton) view).getText().toString();
-                            Toast.makeText(MYpageActivity.this, selectedOption, Toast.LENGTH_SHORT).show();
+                            
                         });
 
                         array.add(str);

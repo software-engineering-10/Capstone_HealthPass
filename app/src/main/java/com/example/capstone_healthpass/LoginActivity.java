@@ -11,12 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstone_healthpass.server.ApiService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.capstone_healthpass.server.RetrofitManager;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -25,8 +22,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     private String nameValue;

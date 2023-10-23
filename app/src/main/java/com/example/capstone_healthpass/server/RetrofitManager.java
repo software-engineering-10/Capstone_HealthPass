@@ -1,4 +1,4 @@
-package com.example.capstone_healthpass;
+package com.example.capstone_healthpass.server;
 
 import com.example.capstone_healthpass.server.ApiService;
 
@@ -10,7 +10,7 @@ public class RetrofitManager {
     private ApiService apiService;
 
     Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://61f7-220-69-208-115.ngrok-free.app")
+            .baseUrl("https://5452-220-69-208-115.ngrok-free.app")
             .addConverterFactory(GsonConverterFactory.create());
 
     public RetrofitManager() {

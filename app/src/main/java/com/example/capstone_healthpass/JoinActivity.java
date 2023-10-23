@@ -1,6 +1,5 @@
 package com.example.capstone_healthpass;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,23 +12,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstone_healthpass.server.ApiService;
+import com.example.capstone_healthpass.server.RetrofitManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JoinActivity extends AppCompatActivity {
 
@@ -132,6 +123,7 @@ public class JoinActivity extends AppCompatActivity {
                     Toast.makeText(JoinActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
                     Log.d("RegisterSuccess", "회원가입 성공");
                     Intent result = new Intent(JoinActivity.this, MainActivity.class);
+                    result.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(result);
                     finish();
                 }

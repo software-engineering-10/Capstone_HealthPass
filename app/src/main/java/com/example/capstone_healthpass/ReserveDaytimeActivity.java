@@ -6,16 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.capstone_healthpass.server.ApiService;
+import com.example.capstone_healthpass.server.RetrofitManager;
 
 import org.json.JSONObject;
 
@@ -26,8 +24,6 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveDaytimeActivity extends Activity {
     public static final int TIME_PICKER_INTERVAL = 30;
@@ -187,6 +183,7 @@ public class ReserveDaytimeActivity extends Activity {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.YEAR, Integer.parseInt(tvYear.getText() .toString()));
                 calendar.set(Calendar.MONTH, Integer.parseInt(tvMonth.getText().toString()));
+
                 calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(tvDay.getText() .toString()));
                 Date date = calendar.getTime();
 
