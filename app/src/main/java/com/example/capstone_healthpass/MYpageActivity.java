@@ -30,8 +30,7 @@ import retrofit2.Response;
 
 public class MYpageActivity  extends AppCompatActivity {
 
-    public String fname=null;
-    public String str=null;
+
 
     private String reserveMinute;
     private String reserveDay;
@@ -39,7 +38,7 @@ public class MYpageActivity  extends AppCompatActivity {
     private String reserveEx_name;
     private String reserveSeat;
     private RadioGroup radioGroup;
-    private ArrayList<String> dataList; // 라디오 버튼에 추가할 데이터 목록
+
     public BottomNavigationView bottomNavigationView;
     RetrofitManager retrofitManager = new RetrofitManager();
     private ArrayList<String> array;
@@ -55,6 +54,7 @@ public class MYpageActivity  extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] resData = selectedOption.split(" ");
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MYpageActivity.this);
                 dlg.setTitle("예약 취소");
                 dlg.setIcon(R.drawable.cat);
@@ -62,9 +62,10 @@ public class MYpageActivity  extends AppCompatActivity {
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"예약이 취소 되었습니다.\n 완료 버튼을 누르세요",
+
+                        Toast.makeText(getApplicationContext(),"예약이 취소 되었습니다.",
                                 Toast.LENGTH_SHORT).show();
-                        canceled(reserveDay,reserveTime,reserveMinute,reserveSeat,reserveEx_name);
+                        canceled(resData[0],resData[1],resData[2],resData[3],resData[4]);
 
                     }
                 });
@@ -92,10 +93,13 @@ public class MYpageActivity  extends AppCompatActivity {
 
                         break;
                     case R.id.navigation_mypage:
-                        Intent intent1 = new Intent(MYpageActivity.this, MYpageActivity.class);
-
-                        startActivity(intent1);//다음 액티비티 화면에
-                        finish();
+                        if(MainActivity.userName=="") {
+                            Toast.makeText(MYpageActivity.this, "로그인 후 이용 바랍니다.", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent intent1 = new Intent(MYpageActivity.this, MYpageActivity.class);
+                            startActivity(intent1);//다음 액티비티 화면에
+                            finish();
+                        }
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
@@ -133,6 +137,7 @@ public class MYpageActivity  extends AppCompatActivity {
                         radioButton.setOnClickListener(view -> {
                             // 선택된 라디오 버튼의 텍스트를 가져와서 사용 가능
                             selectedOption = ((RadioButton) view).getText().toString();
+
 
                         });
 

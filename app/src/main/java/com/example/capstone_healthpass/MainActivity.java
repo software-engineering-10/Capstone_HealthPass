@@ -117,10 +117,12 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.navigation_mypage:
-                        Intent intent1 = new Intent(MainActivity.this, MYpageActivity.class);
-
-                        startActivity(intent1);//다음 액티비티 화면에
-
+                        if(userName=="") {
+                            Toast.makeText(MainActivity.this, "로그인 후 이용 바랍니다.", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent intent1 = new Intent(MainActivity.this, MYpageActivity.class);
+                            startActivity(intent1);//다음 액티비티 화면에
+                        }
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:

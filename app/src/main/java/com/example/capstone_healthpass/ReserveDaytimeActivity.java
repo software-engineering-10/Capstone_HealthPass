@@ -65,14 +65,22 @@ public class ReserveDaytimeActivity extends Activity {
         tvDay = (TextView) findViewById(R.id.tvDay);
         tvHour = (TextView) findViewById(R.id.tvHour);
         tvMinute = (TextView) findViewById(R.id.tvMinute);
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
         int m = Calendar.getInstance().get(Calendar.MINUTE);
 
-
+        int hour = currentDate.getHours()+1;
+        if(hour==24)
+            hour=0;
         dPicker.setMinDate(System.currentTimeMillis());
-        if(m>30)
+        if(m>30) {
             tPicker.setMinute(0);
-        else
+            tPicker.setHour(hour);
+        }
+        else {
+
             tPicker.setMinute(30);
+        }
 
 
 
