@@ -40,6 +40,8 @@ public class ScanQR extends AppCompatActivity {
     private String qrData;
     private String[] datas;
     private String strMinute;
+
+    private String data;
     private int currentMinute;
     private int currentHour;
     @Override
@@ -117,11 +119,26 @@ public class ScanQR extends AppCompatActivity {
                         if (checkStr.equals(array.get(i))){
                             flag = true;
                             Log.d("성공","success");
-                            canceled(formattedDate,currentDate.getHours()+"시",strMinute,datas[0],datas[1]);
+                            data = array.get(i);
+
                         }
                     }
+
                     if(!flag){
                         Toast.makeText(ScanQR.this, "예약 내역이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else{
+                        String[] part = data.split(" ");
+                        if((currentMinute + 30) >= 60){
+                            Toast.makeText(ScanQR.this, part[3]+" "+part[4]+"\n "+ part[1]+" "+part[2]+" ~ "+(currentHour+1)+"시 0분 이용", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(currentHour+1==24 && currentMinute+30==60){
+                            Toast.makeText(ScanQR.this, part[3]+" "+part[4]+"\n "+part[1]+" "+part[2]+" ~ "+"0시 0분 이용..", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(ScanQR.this, part[3]+" "+part[4]+"\n "+part[1]+" "+part[2]+" ~ "+currentHour+"시 30분 이용.", Toast.LENGTH_SHORT).show();
+                        }
                         finish();
                     }
 
@@ -134,32 +151,5 @@ public class ScanQR extends AppCompatActivity {
             }
         });
     }
-    public void canceled(final String day, final String time, final String minute, final String seat, final String ex_name){
 
-        retrofitManager.getApiService().reservedCancel(day,time,minute,seat,ex_name).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code()==201){
-                    if(currentMinute + 30 == 60){
-                        Toast.makeText(ScanQR.this, time+" "+strMinute+" ~ "+(currentHour+1)+"시 0분까지 이용 가능합니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(currentHour+1==24 && currentMinute+30==60){
-                        Toast.makeText(ScanQR.this, time+" "+strMinute+" ~ "+"0시 0분까지 이용 가능합니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(ScanQR.this, time+" "+strMinute+" ~ "+currentHour+"시 30분까지 이용 가능합니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    finish();
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("삭제",t.toString());
-            }
-        });
-    }
 }

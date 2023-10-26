@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -43,12 +44,14 @@ public class RecommendationActivity extends Activity  {
 
                         break;
                     case R.id.navigation_mypage:
-                        Intent intent1 = new Intent(RecommendationActivity.this, MYpageActivity.class);
+                        if(MainActivity.userName=="") {
+                            Toast.makeText(RecommendationActivity.this, "로그인 후 이용 바랍니다.", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent intent1 = new Intent(RecommendationActivity.this, MYpageActivity.class);
+                            startActivity(intent1);//다음 액티비티 화면에
 
-                        startActivity(intent1);//다음 액티비티 화면에
-
-                        // 예: 마이페이지 화면으로 이동
-
+                            // 예: 마이페이지 화면으로 이동
+                        }
                         break;
                     case R.id.navigation_qr_code:
                         Intent intent3 = new Intent(RecommendationActivity.this,ScanQR.class);
