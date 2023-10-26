@@ -67,57 +67,14 @@ public class ReserveDaytimeActivity extends Activity {
         tvMinute = (TextView) findViewById(R.id.tvMinute);
         int m = Calendar.getInstance().get(Calendar.MINUTE);
 
-        flag = false;
-        if(tPicker.getHour() == 23){
-            Calendar calendar = Calendar.getInstance();
-            Log.d("minute",tPicker.getHour()+"분");
-// 현재 날짜의 00:00로 설정
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.MILLISECOND, 0);
 
-// Calendar 객체를 Date 객체로 변환
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-
-// 다음 날의 00시 00분의 밀리초를 얻음
-            long nextDayInMillis = calendar.getTimeInMillis();
-
-// DatePicker의 최소 날짜로 설정
-            dPicker.setMinDate(nextDayInMillis);
-            tPicker.setHour(6);
+        dPicker.setMinDate(System.currentTimeMillis());
+        if(m>30)
             tPicker.setMinute(0);
-            flag = true;
+        else
+            tPicker.setMinute(30);
 
-        }
-        else{
-            dPicker.setMinDate(System.currentTimeMillis());
-        }
-        if (!flag) {
-            if (m > 30) {
-// TimePicker를 오전 6:00으로 설정
-                if (tPicker.getHour() < 6 || tPicker.getHour() == 23) {
-                    tPicker.setHour(6);
-                    tPicker.setMinute(0);
-                }
-                else {
-                    tPicker.setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1);
-                    tPicker.setMinute(0);
-                }
-            } else {
-                if (tPicker.getHour() < 6 || tPicker.getHour() == 23) {
-                    tPicker.setHour(6);
-                    tPicker.setMinute(0);
-                } else {
-                    if (flag)
-                        tPicker.setMinute(0);
-                    else
-                        tPicker.setMinute(30);
-                    dPicker.setMinDate(System.currentTimeMillis());
-                }
 
-            }
-        }
 
 
 
@@ -126,12 +83,7 @@ public class ReserveDaytimeActivity extends Activity {
         tPicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                if (hourOfDay < 6 || hourOfDay == 24) {
-                    Toast.makeText(ReserveDaytimeActivity.this, "헬스장 운영은 06시~23시 입니다.",
-                            Toast.LENGTH_SHORT).show();
-                    tPicker.setHour(6);
-                    tPicker.setMinute(0);
-                }
+
 
                 // 분 값이 0 또는 30이 아닌 경우 수정
                 if (!mIgnoreEvent) {

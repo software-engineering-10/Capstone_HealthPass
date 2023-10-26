@@ -40,6 +40,8 @@ public class ScanQR extends AppCompatActivity {
     private String qrData;
     private String[] datas;
     private String strMinute;
+    private int currentMinute;
+    private int currentHour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,9 +101,9 @@ public class ScanQR extends AppCompatActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                     String formattedDate = dateFormat.format(currentDate);
 
-                    int minute = currentDate.getMinutes();
-
-                    if(minute > 30){
+                    currentMinute = currentDate.getMinutes();
+                    currentHour = currentDate.getHours();
+                    if(currentMinute > 30){
                         strMinute="30분";
                     }
                     else{
@@ -138,9 +140,15 @@ public class ScanQR extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.code()==201){
-
-                    Toast.makeText(ScanQR.this, time+" "+strMinute+" 부터 \n30분 이용 가능합니다.", Toast.LENGTH_SHORT).show();
-
+                    if(currentMinute + 30 == 60){
+                        Toast.makeText(ScanQR.this, time+" "+strMinute+" ~ "+(currentHour+1)+"시 0분까지 이용 가능합니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(currentHour+1==24 && currentMinute+30==60){
+                        Toast.makeText(ScanQR.this, time+" "+strMinute+" ~ "+"0시 0분까지 이용 가능합니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(ScanQR.this, time+" "+strMinute+" ~ "+currentHour+"시 30분까지 이용 가능합니다.", Toast.LENGTH_SHORT).show();
+                    }
                     finish();
 
                 }
