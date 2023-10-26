@@ -117,26 +117,26 @@ public class ReserveMachineActivity extends Activity {
                     //파랑 : 팔, 어깨
                     if (index < 5) {
                         seat.setText((index + 1) + "번"); //버튼 번호를 받아와 띄움
-                        personnel.setText("런닝머신 (30분)");
+                        personnel.setText("런닝머신");
                         seat.setTextColor(Color.BLUE);
                         personnel.setTextColor(Color.BLUE);
 
                     } else if (index == 5 || index == 8) {
                         seat.setText((index + 1) + "번"); //버튼 번호를 받아와 띄움
-                        personnel.setText("펙덱머신 (30분)");
+                        personnel.setText("펙덱머신");
                         seat.setTextColor(Color.BLUE);
                         personnel.setTextColor(Color.BLUE);
 
                     } else if (index == 6 || index == 7) {
                         seat.setText((index + 1) + "번 자리"); //버튼 번호를 받아와 띄움
-                        personnel.setText("사이클 머신 (30분)");
+                        personnel.setText("사이클 머신");
                         seat.setTextColor(Color.RED);
                         personnel.setTextColor(Color.RED);
 
 
                     } else if (index == 10) {
                         seat.setText((index + 1) + "번 자리"); //버튼 번호를 받아와 띄움
-                        personnel.setText("사이클 머신 (30분)");
+                        personnel.setText("사이클 머신");
                         seat.setTextColor(Color.RED);
                         personnel.setTextColor(Color.RED);
 
@@ -144,21 +144,21 @@ public class ReserveMachineActivity extends Activity {
 
                     } else if (index == 9 || index == 11) {
                         seat.setText((index + 1) + "번"); //버튼 번호를 받아와 띄움
-                        personnel.setText("랫폴다운 머신 (30분)");
+                        personnel.setText("랫폴다운 머신");
                         seat.setTextColor(Color.BLUE);
                         personnel.setTextColor(Color.BLUE);
 
 
                     } else if (index == 12 || index == 13){
                         seat.setText((index + 1) + "번"); //버튼 번호를 받아와 띄움
-                        personnel.setText("레그프레스 (30분)");
+                        personnel.setText("레그프레스");
                         seat.setTextColor(Color.RED);
                         personnel.setTextColor(Color.RED);
 
                     }
                     else{
                         seat.setText((index + 1) + "번"); //버튼 번호를 받아와 띄움
-                        personnel.setText("벤치프레스 (30분)");
+                        personnel.setText("벤치프레스");
                         seat.setTextColor(Color.RED);
                         Log.d("체크",index+"번");
                         personnel.setTextColor(Color.RED);

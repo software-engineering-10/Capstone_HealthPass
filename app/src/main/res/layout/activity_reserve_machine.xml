@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text=" *상체 운동기구(파랑) : 펙덱머신 , 하이풀 머신 \n *하의 운동기구(빨강) : 런닝머신 , 사이클 머신 , 레그프레스\n ## 런닝머신 제외 모두 30분씩 이용가능 "
+        android:text=" *상체 운동기구(파랑) : 펙덱머신 , 렛폴다운 머신 \n *하의 운동기구(빨강) : 런닝머신 , 사이클 머신 , 레그프레스\n ## 모두 30분씩 이용가능 "
         android:textSize="13dp" />
 
     <TextView

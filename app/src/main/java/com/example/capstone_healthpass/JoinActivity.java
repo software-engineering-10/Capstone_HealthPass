@@ -65,7 +65,7 @@ public class JoinActivity extends AppCompatActivity {
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
-                        Intent intent3 = new Intent(JoinActivity.this,QrActivity.class);
+                        Intent intent3 = new Intent(JoinActivity.this,ScanQR.class);
 
                         startActivity(intent3);
 
