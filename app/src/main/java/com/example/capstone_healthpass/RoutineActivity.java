@@ -64,7 +64,7 @@ public class RoutineActivity extends Activity {
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
-                        Intent intent3 = new Intent(RoutineActivity.this,QrActivity.class);
+                        Intent intent3 = new Intent(RoutineActivity.this,ScanQR.class);
 
                         startActivity(intent3);
 

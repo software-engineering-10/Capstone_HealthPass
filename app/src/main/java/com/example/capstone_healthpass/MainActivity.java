@@ -87,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
             login_btn.setVisibility(View.INVISIBLE);
             join_Btn.setVisibility(View.INVISIBLE);
             logout_btn.setVisibility(View.VISIBLE);
-            Intent result = new Intent(MainActivity.this, MainActivity.class);
-            startActivity(result);
-            finish();
+
         }
         else if(userName!="") {
             name.setText(userName);
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
-                        Intent intent3 = new Intent(MainActivity.this, QrActivity.class);
+                        Intent intent3 = new Intent(MainActivity.this, ScanQR.class);
 
                         startActivity(intent3);
 

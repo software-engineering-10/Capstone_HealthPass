@@ -99,7 +99,7 @@ public class MYpageActivity  extends AppCompatActivity {
                         // 예: 마이페이지 화면으로 이동
                         break;
                     case R.id.navigation_qr_code:
-                        Intent intent3 = new Intent(MYpageActivity.this, QrActivity.class);
+                        Intent intent3 = new Intent(MYpageActivity.this, ScanQR.class);
 
                         startActivity(intent3);
 
@@ -133,7 +133,7 @@ public class MYpageActivity  extends AppCompatActivity {
                         radioButton.setOnClickListener(view -> {
                             // 선택된 라디오 버튼의 텍스트를 가져와서 사용 가능
                             selectedOption = ((RadioButton) view).getText().toString();
-                            
+
                         });
 
                         array.add(str);

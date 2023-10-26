@@ -56,12 +56,6 @@
         <activity android:name=".WeekPlanActivity"
             android:exported="true"
             />
-        <activity android:name=".QrActivity"
-            android:exported="true"
-            />
-        <activity android:name=".CreateQR"
-            android:exported="true"
-            />
         <activity android:name=".ScanQR"
             android:exported="true"
             />

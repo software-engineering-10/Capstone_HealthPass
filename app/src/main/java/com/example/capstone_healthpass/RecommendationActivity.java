@@ -51,7 +51,7 @@ public class RecommendationActivity extends Activity  {
 
                         break;
                     case R.id.navigation_qr_code:
-                        Intent intent3 = new Intent(RecommendationActivity.this,QrActivity.class);
+                        Intent intent3 = new Intent(RecommendationActivity.this,ScanQR.class);
 
                         startActivity(intent3);
 
