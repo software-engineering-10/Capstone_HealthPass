@@ -10,7 +10,7 @@ public class RetrofitManager {
     private ApiService apiService;
 
     Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://5452-220-69-208-115.ngrok-free.app")
+            .baseUrl("https://3541-220-69-208-115.ngrok-free.app")
             .addConverterFactory(GsonConverterFactory.create());
 
     public RetrofitManager() {
